@@ -1,6 +1,6 @@
 {
   "ip": "play.ducknetwork.fun",
-  "version": "1.0.1",
-  "push": "https://huggingface.co/fatin098/raktaktomc/resolve/main/RAKTAKTO-Launcher-Setup-1.0.1.exe",
-  "changelogs": "1. New theme added"
+  "version": "1.0.2",
+  "push": "https://cdn.discordapp.com/attachments/1513171761137586341/1532506988351586495/RAKTAKTO-Launcher-Setup-1.0.2.exe?ex=6a6d19da&is=6a6bc85a&hm=a32be41fb716c63c255093bb788028bc0bf8f4ee0b3662046a89ecfbe719d2a5&",
+  "changelogs": "1. New theme added\n2. Bug fixed\n3. New Bug added "
 }
