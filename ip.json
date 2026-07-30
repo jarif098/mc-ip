@@ -1,6 +1,6 @@
 {
   "ip": "play.ducknetwork.fun",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "push": "https://huggingface.co/fatin098/raktaktomc/resolve/main/RAKTAKTO-Launcher-Setup-1.0.1.exe",
-  "changelogs": "1. Added custom updater\n2. Fixed topbar styling\n3. Universal x64 & ia32 installer"
+  "changelogs": "1. New theme added"
 }
