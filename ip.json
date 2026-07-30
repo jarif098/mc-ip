@@ -1,3 +1,4 @@
 {
-  ip: "play.ducknetwork.fun"
+  ip: "play.ducknetwork.fun",
+  version: "1.0.0"
 }
