@@ -1,6 +1,6 @@
 {
   "ip": "play.ducknetwork.fun",
-  "version": "1.0.8",
-  "push": "https://cdn.discordapp.com/attachments/1513171761137586341/1532539947192422400/RAKTAKTO-Launcher-Setup-1.0.8.exe?ex=6a6d388c&is=6a6be70c&hm=4cfa99faae71861185d0394f838907e8721641f495ebd856260e64638691fe65&",
+  "version": "1.0.0",
+  "push": "",
   "changelogs": "1. Bug fixed\n2. New bugs added"
 }
