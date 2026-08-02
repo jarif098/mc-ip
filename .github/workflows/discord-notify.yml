@@ -13,42 +13,33 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Read JSON data
-        id: fetch_data
+      - name: Send Discord Embed Notification
         run: |
-          # Parse ip.json values using jq
+          # Read ip.json values
           VERSION=$(jq -r '.version' ip.json)
           DOWNLOAD=$(jq -r '.push' ip.json)
           CHANGELOGS=$(jq -r '.changelogs' ip.json)
 
-          # Save outputs for subsequent steps
-          echo "version=$VERSION" >> $GITHUB_OUTPUT
-          echo "download=$DOWNLOAD" >> $GITHUB_OUTPUT
-          echo "changelogs=$CHANGELOGS" >> $GITHUB_OUTPUT
-
-      - name: Send Rich Discord Embed
-        uses: tsickert/discord-webhook-embed@v2.1.0
-        with:
-          webhook-url: ${{ secrets.DISCORD_WEBHOOK }}
-
-          title: "Launcher got a new update!"
-
-          description: |
-            **Repository:** [${{ github.repository }}](https://github.com/${{ github.repository }})
-            **Branch:** `${{ github.ref_name }}`
-            **Author:** ${{ github.actor }}
-
-            **Version:** `${{ steps.fetch_data.outputs.version }}`
-
-            **Download:**
-            [Download Launcher](${{ steps.fetch_data.outputs.download }})
-
-            **Changelogs:**
-            > ${{ steps.fetch_data.outputs.changelogs }}
-
-            **Latest Commit Message:**
-            > ${{ github.event.head_commit.message }}
-
-          color: 65280
-          url: "${{ github.event.head_commit.url }}"
-          timestamp: true
+          # Build and send Discord Embed payload
+          curl -H "Content-Type: application/json" \
+               -X POST \
+               -d "$(jq -n \
+                 --arg title "Launcher got a new update!" \
+                 --arg repo "$GITHUB_REPOSITORY" \
+                 --arg branch "$GITHUB_REF_NAME" \
+                 --arg author "$GITHUB_ACTOR" \
+                 --arg version "$VERSION" \
+                 --arg download "$DOWNLOAD" \
+                 --arg changelogs "$CHANGELOGS" \
+                 --arg commit "${{ github.event.head_commit.message }}" \
+                 --arg url "${{ github.event.head_commit.url }}" \
+                 '{
+                   embeds: [{
+                     title: $title,
+                     url: $url,
+                     color: 65280,
+                     description: ("**Repository:** [" + $repo + "](https://github.com/" + $repo + ")\n**Branch:** `" + $branch + "`\n**Author:** " + $author + "\n\n**Version:** `" + $version + "`\n\n**Download:**\n[Download Launcher](" + $download + ")\n\n**Changelogs:**\n> " + $changelogs + "\n\n**Latest Commit Message:**\n> " + $commit),
+                     timestamp: (now | strftime("%Y-%m-%dT%H:%M:%SZ"))
+                   }]
+                 }')" \
+               "${{ secrets.DISCORD_WEBHOOK }}"
