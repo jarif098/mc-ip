@@ -1,0 +1,38 @@
+name: Discord Push Notification
+
+on:
+  push:
+    branches:
+      - '**'
+
+jobs:
+  discord-message:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Send Rich Discord Embed
+        uses: tsickert/discord-webhook-embed@v2.1.0
+        with:
+          webhook-url: ${{ secrets.DISCORD_WEBHOOK }}
+
+          title: "Launcher got a new update!"
+
+          description: |
+            **Repository:** [${{ github.repository }}](https://github.com/${{ github.repository }})
+            **Branch:** `${{ github.ref_name }}`
+            **Author:** ${{ github.actor }}
+
+            **Version:** `1.0.0`
+
+            **Download:**
+            [Download Launcher](https://huggingface.co/fatin098/raktaktomc/resolve/main/RAKTAKTO-Launcher-Setup-1.0.0.exe)
+
+            **Changelogs:**
+            > Our first version
+
+            **Latest Commit Message:**
+            > ${{ github.event.head_commit.message }}
+
+          color: "0x00FF00"
+          url: "${{ github.event.head_commit.url }}"
+          timestamp: true
