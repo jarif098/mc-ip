@@ -10,6 +10,22 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Read JSON data
+        id: fetch_data
+        run: |
+          # Parse ip.json values using jq
+          VERSION=$(jq -r '.version' ip.json)
+          DOWNLOAD=$(jq -r '.push' ip.json)
+          CHANGELOGS=$(jq -r '.changelogs' ip.json)
+
+          # Save outputs for subsequent steps
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "download=$DOWNLOAD" >> $GITHUB_OUTPUT
+          echo "changelogs=$CHANGELOGS" >> $GITHUB_OUTPUT
+
       - name: Send Rich Discord Embed
         uses: tsickert/discord-webhook-embed@v2.1.0
         with:
@@ -22,17 +38,17 @@ jobs:
             **Branch:** `${{ github.ref_name }}`
             **Author:** ${{ github.actor }}
 
-            **Version:** `1.0.0`
+            **Version:** `${{ steps.fetch_data.outputs.version }}`
 
             **Download:**
-            [Download Launcher](https://huggingface.co/fatin098/raktaktomc/resolve/main/RAKTAKTO-Launcher-Setup-1.0.0.exe)
+            [Download Launcher](${{ steps.fetch_data.outputs.download }})
 
             **Changelogs:**
-            > Our first version
+            > ${{ steps.fetch_data.outputs.changelogs }}
 
             **Latest Commit Message:**
             > ${{ github.event.head_commit.message }}
 
-          color: "0x00FF00"
+          color: 65280
           url: "${{ github.event.head_commit.url }}"
           timestamp: true
