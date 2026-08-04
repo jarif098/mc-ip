@@ -1,6 +1,6 @@
 {
   "ip": "play.ducknetwork.fun",
-  "version": "1.0.1",
-  "push": "https://huggingface.co/fatin098/raktaktomc/resolve/main/RAKTAKTO-Launcher-Setup-1.0.1.exe",
-  "changelogs": "1. Major Bugs Fixed\n2. New UI added\n3.Themes can be changed from the setting"
+  "version": "1.0.2",
+  "push": "https://huggingface.co/fatin098/raktaktomc/resolve/main/RAKTAKTO-Launcher-Setup-1.0.2.exe",
+  "changelogs": "1. Major Bugs Fixed\n2. Account login issues fixed\n3.Theme settings not saving - fixed\n4. New Features added"
 }
