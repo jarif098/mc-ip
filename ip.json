@@ -1,6 +1,6 @@
 {
   "ip": "play.ducknetwork.fun",
-  "version": "1.0.4",
-  "push": "https://huggingface.co/fatin098/raktaktomc/resolve/main/RAKTAKTO-Launcher-Setup-1.0.4.exe",
-  "changelogs": "• Mod, Shader & Resource Pack Import Fixed — Seamlessly drag and drop or import your custom assets without crashing or path errors.\n• Microsoft Auto-Logout — Fixed persistent session drops so you stay logged in reliably across game restarts.\n• Theme Settings Fix — Your selected launcher themes and aesthetic preferences now save properly.\n• Auto-Hide Launcher Option — Added a toggleable setting to automatically minimize/hide the launcher once Minecraft boots up.\nExtra Bugs Fixed"
+  "version": "1.0.5",
+  "push": "https://huggingface.co/fatin098/raktaktomc/resolve/main/RAKTAKTO-Launcher-Setup-1.0.5.exe",
+  "changelogs": "1. Faster Startup — Optimized loading for near-instant startup.\n2. Smoother UI — Reduced CPU usage and improved rendering.\n3. Smart FPS — Uncapped while active, 30 FPS when minimized or launching.\n4. Lazy Token Refresh — Microsoft tokens refresh only when needed.\n5. Dynamic 2D Skins — Added lightweight interactive skin previews.\n6. Smarter Play Button — Disabled until accounts are fully loaded and validated.\n7. Cleaner Skin Gallery — Removed unnecessary skin filenames.\n8. 64×32 Skins Fixed — Fixed legacy skin rendering issues."
 }
